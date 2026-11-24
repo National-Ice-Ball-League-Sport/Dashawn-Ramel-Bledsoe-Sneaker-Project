@@ -1,0 +1,6 @@
+Layer,Part_ID,Component_Name,Material_Spec,Finish_Tolerance,Notes
+L1,HW-01-L1,CNC Rotary Bezel,6061-T6 Aluminum,Anodized Palladium Black (+/-0.02mm),Knurled grip vents & debossed DB cap
+L2,HW-01-L2,IP67 Seal & Diffuser Ring,Medical Silicone + PMMA,Varsity Gold Diffuser,IP67 water/dust seal & status ring
+L3,HW-01-L3,Sensor & Logic PCB,4-Layer FR4 (ENIG),1000Hz 6-Axis IMU + BLE 5.3,1D Kalman DSP + optical encoder + 14h flash
+L4,HW-01-L4,Battery & Magnetic Pogo Pins,110mAh Li-Po + Brass Pins,24k Gold-Plated Contacts,Snap-fit magnetic USB-C charging interface
+L5,HW-01-L5,Anodized Chassis Base,6061-T6 Aluminum,Palladium Black Hardcoat,Anchored directly to lateral ankle collar

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Future-Step Smart Pivot Dial (HW-01) — Live Telemetry</title>
+<style>
+  body{font-family:system-ui,sans-serif;background:#0d1410;color:#f5f7f6;margin:0;padding:24px}
+  .hdr{border-bottom:2px solid #eab308;padding-bottom:14px;margin-bottom:20px}
+  h1{margin:0;color:#22c55e;font-size:1.5rem}.sub{color:#eab308;font-size:.85rem;margin-top:4px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .card{background:#16221b;border:1px solid #263b2f;border-radius:10px;padding:16px}
+  .val{font-size:2rem;font-weight:700;color:#eab308;margin:8px 0}
+  button{background:#15803d;color:#fff;border:1px solid #eab308;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600;margin-right:8px}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <h1>FUTURE-STEP SMART PIVOT DIAL (HW-01)</h1>
+  <div class="sub">Creation By Dashawn Ramel Bledsoe, Founder | Sports Product Designer | Entrepreneur Inventor at National Ice Ball League Sport Inc.</div>
+</div>
+<div style="margin-bottom:18px">
+  <button id="pairBtn">Pair HW-01 Dial (BLE 5.3)</button>
+  <button id="simBtn">Run 1D Kalman Jump Simulator</button>
+</div>
+<div class="grid">
+  <div class="card"><div>Kalman Jump Height</div><div class="val" id="jumpVal">0.0 cm</div><div id="toVel">Takeoff Vel: 0.00 m/s</div></div>
+  <div class="card"><div>Total Foot Steps</div><div class="val" id="stepVal">0</div><div>ZUPT Stance Filtered</div></div>
+  <div class="card"><div>Foot Motion Speed</div><div class="val" id="spdVal">0.00 m/s</div><div>Planar Velocity</div></div>
+  <div class="card"><div>Hyper-Gel Impact</div><div class="val" id="impVal">1.00 G</div><div>Landing Load</div></div>
+</div>
+<script>
+const SVC="0000db01-0000-1000-8000-00805f9b34fb",CHR="0000db02-0000-1000-8000-00805f9b34fb";
+function renderView(dv){
+  if(dv.byteLength<20||dv.getUint16(0,true)!==0xDB01)return;
+  document.getElementById("jumpVal").textContent=(dv.getUint16(8,true)/10).toFixed(1)+" cm";
+  document.getElementById("stepVal").textContent=dv.getUint16(10,true);
+  document.getElementById("spdVal").textContent=(dv.getUint16(12,true)/100).toFixed(2)+" m/s";
+  document.getElementById("impVal").textContent=(dv.getUint16(14,true)/100).toFixed(2)+" G";
+  document.getElementById("toVel").textContent="Takeoff Vel: "+(dv.getUint16(16,true)/100).toFixed(2)+" m/s";
+}
+document.getElementById("pairBtn").onclick=async()=>{
+  const dev=await navigator.bluetooth.requestDevice({filters:[{services:[SVC]}]});
+  const srv=await dev.gatt.connect(),svc=await srv.getPrimaryService(SVC),ch=await svc.getCharacteristic(CHR);
+  await ch.startNotifications();
+  ch.addEventListener("characteristicvaluechanged",e=>renderView(e.target.value));
+};
+let simTimer=null,steps=0;
+document.getElementById("simBtn").onclick=()=>{
+  if(simTimer){clearInterval(simTimer);simTimer=null;return;}
+  simTimer=setInterval(()=>{
+    steps+=2;const buf=new ArrayBuffer(20),dv=new DataView(buf);
+    dv.setUint16(0,0xDB01,true);dv.setUint8(2,1);dv.setUint8(3,96);dv.setUint32(4,Date.now()&0xFFFFFFFF,true);
+    dv.setUint16(8,Math.round(310+Math.random()*95),true);dv.setUint16(10,steps,true);
+    dv.setUint16(12,Math.round(380+Math.random()*240),true);dv.setUint16(14,Math.round(390+Math.random()*140),true);
+    dv.setUint16(16,Math.round(240+Math.random()*45),true);renderView(dv);
+  },700);
+};
+</script>
+</body>
+</html>
