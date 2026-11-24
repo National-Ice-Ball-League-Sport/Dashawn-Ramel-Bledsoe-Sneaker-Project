@@ -15,6 +15,16 @@ A public repository does not by itself establish ownership, inventorship, validi
 
 For priority analysis, preserve the following repository evidence: the commit history, commit hashes, GitHub publication timestamps, and dated source/specification files. Before relying on this repository for a priority or prior-art position, an intellectual-property attorney or qualified patent professional should verify authorship, reduction to practice, enablement, the governing disclosure date, and whether an applicable grace period, filing relationship, or other jurisdiction-specific exception applies.
 
+## Biogrip Smart Fabric, Hyper-Gel Sole, and derivatives
+
+The Future-Step concept disclosed here includes, where applicable, the integration of Biogrip smart-fabric insole technology, Hyper-Gel sole technology, load-bearing and pressure-sensing fabric routes, cushioning and impact-response geometry, outsole grip surfaces, fit and retention features, the Smart Pivot Dial, and the software and firmware used to interpret or present biomechanical measurements.
+
+No open-source, permission-to-copy, patent, trademark, trade-secret, or other intellectual-property license is granted by this repository merely because this code or documentation is public. Unless a separate written agreement expressly provides otherwise, viewers and downstream users should not presume authorization to copy, reverse-engineer, manufacture, modify, integrate, distribute, commercialize, or create derivative works from this project's distinctive materials, structures, arrangements, algorithms, designs, drawings, specifications, names, or systems.
+
+This notice describes the project's claimed concept and desired reservation of rights; it does not itself determine copyright ownership, inventorship, patentability, validity, priority, enforceability, or freedom to operate. Independent development, pre-existing public information, third-party rights, and separate factual questions may remain relevant. Before using, adapting, manufacturing, or commercializing the concepts described here, obtain written authorization and independent intellectual-property advice.
+
+A public disclosure does not prevent qualified patent counsel from identifying filing options, but it may create jurisdiction-specific patentability and priority consequences. Preserve dated CAD files, schematics, bills of materials, material specifications, biomechanical calculations, simulations, test data, prototype records, communications, and inventor records. Consult a patent attorney before further publication or commercialization.
+
 ## Organization affiliation
 
 This project is affiliated with **National Ice Ball League Sport Inc.**, led by Dashawn Ramel Bledsoe as Founder and Sports Product Designer.
